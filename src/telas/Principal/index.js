@@ -7,7 +7,7 @@ import { auth } from "../../config/firebase";
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { BotaoProduto } from "../../componentes/BotaoProduto";
-import { pegarProdutos } from "../../servicos/firestore";
+import { pegarProdutos, pegarProdutosTempoReal } from "../../servicos/firestore";
 
 export default function Principal({ navigation }) {
   const dadosUsuario = auth.currentUser.email;
@@ -25,6 +25,8 @@ export default function Principal({ navigation }) {
 
   useEffect(() => {
     carregarDadosProdutos();
+
+    pegarProdutosTempoReal(setProdutos)
   }, []);
 
   return (
